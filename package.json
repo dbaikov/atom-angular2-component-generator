@@ -14,10 +14,10 @@
     ]
   ],
   "_from": "../d-116925-1167-1nxf4cv/package.tgz",
-  "_id": "angular2-component-generator@0.0.1",
+  "_id": "aki-likes-to-whine-angular2-component-generator@0.0.2",
   "_inCache": true,
   "_installable": true,
-  "_location": "/angular2-component-generator",
+  "_location": "/aki-likes-to-whine-angular2-component-generator",
   "_phantomChildren": {},
   "_requested": {
     "raw": "/private/var/folders/m8/wd2tbth52bz3d79fhtln5cjh0000gn/T/d-116925-1167-1nxf4cv/package.tgz",
@@ -40,11 +40,11 @@
     "atom-workspace": "angular2-component-generator:toggle"
   },
   "author": {
-    "name": "Dmytro Baikov",
-    "email": "dmitriybaikov@gmail.com"
+    "name": "Phillip R Berger",
+    "email": "pberger@broadsoft.com"
   },
   "bugs": {
-    "url": "https://github.com/dbaikov/atom-angular2-component-generator/issues"
+    "url": "https://github.com/PhillipBerger-BSFT/atom-angular2-component-generator/issues"
   },
   "dependencies": {
     "atom-space-pen-views": "^2.2.0",
@@ -53,12 +53,12 @@
     "fs-extra": "^0.30.0",
     "rxjs": "^5.0.0-rc.1"
   },
-  "description": "Generates angular2 component files (html, css, typescript -> template, style-sheet, component.ts + module.ts)",
+  "description": "Generates angular2 component files (html, css, typescript -> template, style-sheet, component.ts + module.ts, spec files!)",
   "devDependencies": {},
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "homepage": "https://github.com/dbaikov/atom-angular2-component-generator",
+  "homepage": "https://github.com/PhillipBerger-BSFT/atom-angular2-component-generator",
   "keywords": [
     "atom-angular2",
     "angular2",
@@ -74,7 +74,7 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbaikov/atom-angular2-component-generator.git"
+    "url": "git+https://github.com/PhillipBerger-BSFT/atom-angular2-component-generator.git"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
