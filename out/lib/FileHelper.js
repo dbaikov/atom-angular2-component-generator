@@ -1,138 +1,121 @@
-import * as fse from 'fs-extra';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as changeCase from 'change-case';
-import { Observable } from 'rxjs';
-
-export class FileHelper {
-    public static  atom: any;
-    private static createFile = <(file: string, data: string) => Observable<{}>>Observable.bindNodeCallback(fse.outputFile);
-    private static assetRootDir: string = path.join(__dirname, '../assets');
-
-    public static createComponent(componentDir: string, componentName: string, config: any): Observable<string> {
+"use strict";
+const fse = require("fs-extra");
+const fs = require("fs");
+const path = require("path");
+const changeCase = require("change-case");
+const rxjs_1 = require("rxjs");
+class FileHelper {
+    static createComponent(componentDir, componentName, config) {
         let templateFileName = this.assetRootDir + '/templates/component.template';
         if (config.template) {
             templateFileName = this.resolveWorkspaceRoot(config.template);
         }
-
-        let componentContent = fs.readFileSync( templateFileName ).toString()
+        let componentContent = fs.readFileSync(templateFileName).toString()
             .replace(/{selector}/g, componentName)
             .replace(/{templateUrl}/g, `${componentName}.component.html`)
             .replace(/{styleUrls}/g, `${componentName}.component.css`)
             .replace(/{className}/g, changeCase.pascalCase(componentName));
-
         let filename = `${componentDir}/${componentName}.component.${config.extension}`;
-
         if (config.create) {
             return this.createFile(filename, componentContent)
                 .map(result => filename);
         }
         else {
-            return Observable.of('');
+            return rxjs_1.Observable.of('');
         }
-    };
-
-    public static createModule(componentDir: string, componentName: string, config: any): Observable<string> {
+    }
+    ;
+    static createModule(componentDir, componentName, config) {
         let templateFileName = this.assetRootDir + '/templates/module.template';
         if (config.template) {
             templateFileName = this.resolveWorkspaceRoot(config.template);
         }
-
-        let moduleContent = fs.readFileSync( templateFileName ).toString()
+        let moduleContent = fs.readFileSync(templateFileName).toString()
             .replace(/{componentName}/g, componentName)
             .replace(/{className}/g, changeCase.pascalCase(componentName));
-
         let filename = `${componentDir}/${componentName}.module.${config.extension}`;
-
         if (config.create) {
             return this.createFile(filename, moduleContent)
                 .map(result => filename);
         }
         else {
-            return Observable.of('');
+            return rxjs_1.Observable.of('');
         }
-    };
-
-    public static createHtml(componentDir: string, componentName: string, config: any): Observable<string> {
+    }
+    ;
+    static createHtml(componentDir, componentName, config) {
         let templateFileName = this.assetRootDir + '/templates/html.template';
         if (config.template) {
             templateFileName = this.resolveWorkspaceRoot(config.template);
         }
-
-        let htmlContent = fs.readFileSync( templateFileName ).toString();
-
+        let htmlContent = fs.readFileSync(templateFileName).toString();
         let filename = `${componentDir}/${componentName}.component.${config.extension}`;
         if (config.create) {
             return this.createFile(filename, htmlContent)
                 .map(result => filename);
         }
         else {
-            return Observable.of('');
+            return rxjs_1.Observable.of('');
         }
-    };
-
-    public static createCss(componentDir: string, componentName: string, config: any): Observable<string> {
+    }
+    ;
+    static createCss(componentDir, componentName, config) {
         let templateFileName = this.assetRootDir + '/templates/css.template';
         if (config.template) {
             templateFileName = this.resolveWorkspaceRoot(config.template);
         }
-
-        let cssContent = fs.readFileSync( templateFileName ).toString();
-
-
+        let cssContent = fs.readFileSync(templateFileName).toString();
         let filename = `${componentDir}/${componentName}.component.${config.extension}`;
         if (config.create) {
             return this.createFile(filename, cssContent)
                 .map(result => filename);
         }
         else {
-            return Observable.of('');
+            return rxjs_1.Observable.of('');
         }
-    };
-
-    public static createSpec(componentDir: string, componentName: string, config: any): Observable<string> {
+    }
+    ;
+    static createSpec(componentDir, componentName, config) {
         let templateFileName = this.assetRootDir + '/templates/spec.template';
         if (config.template) {
             templateFileName = this.resolveWorkspaceRoot(config.template);
         }
-
-        let specContent = fs.readFileSync( templateFileName ).toString();
-
-
+        let specContent = fs.readFileSync(templateFileName).toString();
         let filename = `${componentDir}/${componentName}.component.${config.extension}`;
         if (config.create) {
             return this.createFile(filename, specContent)
                 .map(result => filename);
         }
         else {
-            return Observable.of('');
+            return rxjs_1.Observable.of('');
         }
-    };
-
-    public static createComponentDir(uri: any, componentName: string): string {
+    }
+    ;
+    static createComponentDir(uri, componentName) {
         let contextMenuSourcePath;
-
         if (uri && fs.lstatSync(uri).isDirectory()) {
             contextMenuSourcePath = uri;
-        } else if (uri) {
+        }
+        else if (uri) {
             contextMenuSourcePath = path.dirname(uri);
-        } else {
+        }
+        else {
             contextMenuSourcePath = this.atom.workspace.project.rootDirectories[0].path;
         }
-
         let componentDir = `${contextMenuSourcePath}/${componentName}`;
         fse.mkdirsSync(componentDir);
         return componentDir;
     }
-
-    public static getConfig(): any {
-        let content = fs.readFileSync( this.assetRootDir + '/config/config.json' ).toString();
+    static getConfig() {
+        let content = fs.readFileSync(this.assetRootDir + '/config/config.json').toString();
         content = content.replace(/\${workspaceRoot}/g, this.atom.workspace.project.rootDirectories[0].path);
         return JSON.parse(content);
     }
-
-    public static resolveWorkspaceRoot(path: string): string {
+    static resolveWorkspaceRoot(path) {
         return path.replace('${workspaceRoot}', this.atom.workspace.project.rootDirectories[0].path);
     }
-
 }
+exports.FileHelper = FileHelper;
+FileHelper.createFile = rxjs_1.Observable.bindNodeCallback(fse.outputFile);
+FileHelper.assetRootDir = path.join(__dirname, '../assets');
+//# sourceMappingURL=FileHelper.js.map

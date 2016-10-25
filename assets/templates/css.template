@@ -1,1 +1,3 @@
+@import "../../style/global-vars/_colors.scss";
+
 // component css goes here
