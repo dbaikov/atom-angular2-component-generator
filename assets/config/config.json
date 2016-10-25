@@ -13,8 +13,12 @@
             "extension": "html"
         },
         "module": {
-            "create": true,
+            "create": false,
             "extension": "ts"
+        },
+        "spec": {
+            "create": true,
+            "extension": "spec.ts"
         }
     }
 }
